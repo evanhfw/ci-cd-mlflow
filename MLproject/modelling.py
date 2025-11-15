@@ -60,7 +60,7 @@ def main() -> None:
     args = parse_args()
     # setup_mlflow()
     X_train, X_test, y_train, y_test = load_data()
-    train_model(X_train, y_train, X_test, y_test, args.n_estimators, args.max_depth)
+    train_model(X_train, y_train, args.n_estimators, args.max_depth)
 
 if __name__ == "__main__":
     main()
