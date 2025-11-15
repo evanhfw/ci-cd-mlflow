@@ -56,6 +56,16 @@ def train_model(
     )
     model.fit(X_train, y_train)
 
+    input_example = X_train[0:5]
+
+
+    with mlflow.start_run():
+        mlflow.sklearn.log_model(
+            sk_model=model,
+            artifact_path="model",
+            input_example=input_example
+        )
+
 def main() -> None:
     args = parse_args()
     # setup_mlflow()
