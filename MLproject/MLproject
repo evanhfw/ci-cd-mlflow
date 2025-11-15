@@ -4,5 +4,5 @@ entry_points:
   main:
     parameters:
       n_estimators: {type: int, default: 100}
-      max_depth: {type: int, default: None}
+      max_depth: {type: int, default: 3}
     command: "uv run modelling.py --n_estimators {n_estimators} --max_depth {max_depth}"
