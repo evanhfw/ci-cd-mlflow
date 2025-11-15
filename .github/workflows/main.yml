@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  ci/cd mlflow:
+  build:
     runs-on: ubuntu-latest
 
     steps:
