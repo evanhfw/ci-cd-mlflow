@@ -9,22 +9,22 @@ on:
       - main
 
 jobs:
-  build:
+  ci-cd-mlflow:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-        - name: Install the latest version of uv
-          uses: astral-sh/setup-uv@v7
+    
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v7
 
-        - name: Sync dependencies
-          run: uv sync
+      - name: Sync dependencies
+        run: uv sync
 
-        - name: Run mlflow project
-          run: |
-            uv run mlflow MLproject --env-manager=local
+      - name: Run mlflow project
+        run: |
+          uv run mlflow MLproject --env-manager=local
 
       # Get latest run_id
       - name: Get latest MLflow run_id
