@@ -8,6 +8,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   ci-cd-mlflow:
     runs-on: ubuntu-latest
@@ -25,6 +28,24 @@ jobs:
       - name: Run mlflow project
         run: |
           uv run mlflow run MLproject --env-manager=local
+
+      - name: Set up GIT LFS
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]"
+          git lfs install
+          git lfs track "mlruns/**"
+          git add .gitattributes
+          git commit -m "Track large files in mlruns with Git LFS [skip ci]]" || true
+          git push
+
+      - name: Save mlruns to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]"
+          git add -f mlruns/
+          git commit -m "Save mlruns from CI run [skip ci]" || true
+          git push
 
       # Get latest run_id
       - name: Get latest MLflow run_id
