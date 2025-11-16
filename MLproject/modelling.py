@@ -58,7 +58,6 @@ def train_model(
 
     input_example = X_train[0:5]
 
-
     with mlflow.start_run():
         mlflow.sklearn.log_model(
             sk_model=model,
